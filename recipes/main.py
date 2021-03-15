@@ -34,17 +34,4 @@ print(zzz)
 '''for elem in list3:
     with open('test.txt', 'w') as f:
         f.write('\n \n'.join(map(str, list3)))'''
-
-
-
-
-
-# lis = []
-# for link in links:
-#     title = link.get('title')
-#     if title == None:
-#         continue
-#     lis.append(title)
-
-
-# print('done!')
+        
