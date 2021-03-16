@@ -106,7 +106,7 @@ def OFDentrees():
 desLinkList = []
 desTitleList = []
 desList3 = []
-desfinalList = []
+desFinalList = []
 
 def OFDdesserts():
     print('OFD dessert time, yum!')
@@ -143,14 +143,14 @@ def OFDdesserts():
     
     #erase duplicates
     for item in desList3:
-        if item not in desfinalList:
-            desfinalList.append(item) 
+        if item not in desFinalList:
+            desFinalList.append(item) 
 
     #write the file
-    for elem in desfinalList:
+    for elem in desFinalList:
         with open('recipes/desserts.txt', 'w') as f:
             f.write('\n')
-            f.write('\n \n'.join(map(str, desfinalList)))
+            f.write('\n \n'.join(map(str, desFinalList)))
             print('just added something yummy to desserts!')
 
 OFDdesserts()
