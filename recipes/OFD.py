@@ -5,9 +5,6 @@ from bs4 import BeautifulSoup
 import requests
 
 
-
-#don't want the lists to be re-written every time we call the function
-appMasterList = []
 #get the link, make the soup, parse the soup, erase duplicates, write the file.
 def OFDappetizers():
     appList = []
@@ -57,7 +54,6 @@ def OFDappetizers():
             f.write('\n \n'.join(map(str, appList)))
     print('just added something yummy to appetizers!')
 
-entMasterList = []
 def OFDentrees():
     entList = []
     print('OFD entree time, yum!')
@@ -104,7 +100,6 @@ def OFDentrees():
             f.write('\n \n'.join(map(str, entList)))
     print('just added something yummy to entrees!')
 
-desMasterList = []
 def OFDdesserts():
     desList = []
     print('OFD dessert time, yum!')
@@ -151,7 +146,7 @@ def OFDdesserts():
 
         
 
-breMasterList = []
+
 def OFDbreakfast():
     breList = []
     print('OFD breakfast time, yum!')
@@ -187,9 +182,7 @@ def OFDbreakfast():
             finalPic = title.img.attrs['src']
             hyperL = title.find('header', class_ = 'entry-header').a['href']
             breList.append([titleActual, hyperL, finalPic])
-    for element in breList:
-        if element not in breMasterList:
-            breMasterList.append(element)
+
 
     #write the file
     for elem in breList:
