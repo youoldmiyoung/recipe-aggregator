@@ -35,6 +35,12 @@ def OFDappetizers():
                 if titleActual not in appTitleList:
                     appTitleList.append(titleActual)
                     appLinkList.append(hyperL)
+        #scrape the image
+        #APP1
+        for image in links[0:13]:
+            x = image.find('img')
+            finalPic = x.attrs['src']
+
 
     #different code for page 1 of each category due to diff link formatting on website
     url = 'https://olivesfordinner.com/category/appetizers'
@@ -50,8 +56,13 @@ def OFDappetizers():
             if titleActual not in appTitleList:
                 appTitleList.append(titleActual)
                 appLinkList.append(hyperL)
+    #scrape the image
+    #APP2
+    for image in links[0:13]: 
+            x = image.find('img')
+            finalPic = x.attrs['src']
 
-    #pair titles and links together
+    #pair titles and links together, from both the multi-page scrape and single first page scrape
     appList3.append([[x,y] for x,y in zip(appTitleList, appLinkList)])
 
     print('checking for duplicates...')
@@ -96,6 +107,12 @@ def OFDentrees():
                 if titleActual not in entTitleList:
                     entTitleList.append(titleActual)
                     entLinkList.append(hyperL)
+        
+        #scrape the image
+        #ENTREE 1
+        for image in links[0:13]: 
+            x = image.find('img')
+            finalPic = x.attrs['src']
 
     #different code for page 1 of each category due to diff link formatting on website
     url = 'https://olivesfordinner.com/category/entrees/'
@@ -111,6 +128,12 @@ def OFDentrees():
             if titleActual not in entTitleList:
                 entTitleList.append(titleActual)
                 entLinkList.append(hyperL)
+
+        #scrape the image
+        #ENTREE 2
+        for image in links[0:13]: 
+            x = image.find('img')
+            finalPic = x.attrs['src']
 
     #pair titles and links together
     entList3.append([[x,y] for x,y in zip(entTitleList, entLinkList)])
@@ -155,6 +178,11 @@ def OFDdesserts():
                 if titleActual not in desTitleList:
                     desTitleList.append(titleActual)
                     desLinkList.append(hyperL)
+        #scrape the image
+        #DESSERT 1
+        for image in links[0:13]: 
+            x = image.find('img')
+            finalPic = x.attrs['src']
 
     #different code for page 1 of each category due to diff link formatting on website
     url = 'https://olivesfordinner.com/category/dessert/'
@@ -170,6 +198,11 @@ def OFDdesserts():
             if titleActual not in desTitleList:
                 desTitleList.append(titleActual)
                 desLinkList.append(hyperL)
+    #scrape the image
+    #DESSERT 2
+    for image in links[0:13]: 
+        x = image.find('img')
+        finalPic = x.attrs['src']
 
     #pair titles and links together
     desList3.append([[x,y] for x,y in zip(desTitleList, desLinkList)])
@@ -213,6 +246,12 @@ def OFDbreakfast():
                     breTitleList.append(titleActual)
                     breLinkList.append(hyperL)
 
+        #scrape the image
+        #BREAKFAST 1
+        for image in links[0:13]: 
+            x = image.find('img')
+            finalPic = x.attrs['src']
+
     #different code for page 1 of each category due to diff link formatting on website
     url = 'https://olivesfordinner.com/category/breakfast-and-brunch'
     print('making soup...')
@@ -227,7 +266,11 @@ def OFDbreakfast():
             if titleActual not in breTitleList:
                 breTitleList.append(titleActual)
                 breLinkList.append(hyperL)
-
+    #scrape the image
+    #BREAKFAST 2
+    for image in links[0:13]: 
+        x = image.find('img')
+        finalPic = x.attrs['src']
     #pair titles and links together
     breList3.append([[x,y] for x,y in zip(breTitleList, breLinkList)])
     print('checking for duplicates...')
