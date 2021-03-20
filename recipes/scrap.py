@@ -2,14 +2,14 @@
 from bs4 import BeautifulSoup
 import requests
 
-
+aList = []
 entLinkList = []
 entTitleList = []
 entList3 = []
 entFinalList = []
 entPicList = []
 
-url = 'https://olivesfordinner.com/category/entrees/'
+url = 'https://olivesfordinner.com/category/entrees/page/16'
 print('making soup...')
 response = requests.get(url)
 htmlText = response.text
@@ -17,15 +17,20 @@ soup = BeautifulSoup(htmlText, 'lxml')
 links = soup.find_all('article')
 for title in links[0:13]:
     titleActual = title.get('aria-label')
+    x = title.img.attrs['src']
+print(x)
+'''
     if 'Giveaway' not in titleActual:
         hyperL = title.find('header', class_ = 'entry-header').a['href']
-        if titleActual not in entTitleList:
-            entTitleList.append(titleActual)
-            entLinkList.append(hyperL)
+        finalPic = x.attrs['src']
+        aList.append([titleActual, hyperL, finalPic])
+print(aList)
+'''
+
 
     #scrape the image
     #ENTREE 2
-for image in links[0:13]: 
+'''for image in links[0:13]: 
     x = image.find('img')
     finalPic = x.attrs['src']
     if 'giveaway' not in finalPic:
@@ -42,4 +47,4 @@ for item in entList3:
     if item not in entFinalList:
         entFinalList.append(item) 
 
-print(entList3)
+print(entList3)'''
