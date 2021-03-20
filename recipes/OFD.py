@@ -4,16 +4,13 @@
 from bs4 import BeautifulSoup
 import requests
 
-#don't want the lists to be re-written every time we call the function
-appLinkList = []
-appTitleList = []
-appList3 = []
-appFinalList = []
-appPicList = []
-appList = []
 
+
+#don't want the lists to be re-written every time we call the function
+appMasterList = []
 #get the link, make the soup, parse the soup, erase duplicates, write the file.
 def OFDappetizers():
+    appList = []
     print('OFD appetizer time, yum!')
     #get the link
     urlA = 'https://olivesfordinner.com/category/appetizers/page/{}'
@@ -54,20 +51,15 @@ def OFDappetizers():
             hyperL = title.find('header', class_ = 'entry-header').a['href']
             appList.append([titleActual, hyperL, finalPic])
 
-    #write the file
-    for elem in appList:
+#write the file
+    for element in appList:
         with open('recipes/appetizers.txt', 'w') as f:
             f.write('\n \n'.join(map(str, appList)))
     print('just added something yummy to appetizers!')
 
-entLinkList = []
-entTitleList = []
-entList3 = []
-entFinalList = []
-entPicList = []
-entList = []
-
+entMasterList = []
 def OFDentrees():
+    entList = []
     print('OFD entree time, yum!')
     #get the link
     urlA = 'https://olivesfordinner.com/category/entrees/page/{}'
@@ -106,20 +98,15 @@ def OFDentrees():
             hyperL = title.find('header', class_ = 'entry-header').a['href']
             entList.append([titleActual, hyperL, finalPic])
 
-    #write the file
+#write the file
     for elem in entList:
         with open('recipes/entrees.txt', 'w') as f:
             f.write('\n \n'.join(map(str, entList)))
     print('just added something yummy to entrees!')
 
-desLinkList = []
-desTitleList = []
-desList3 = []
-desFinalList = []
-desPicList = []
-desList = []
-
+desMasterList = []
 def OFDdesserts():
+    desList = []
     print('OFD dessert time, yum!')
     #get the link
     urlA = 'https://olivesfordinner.com/category/dessert/page/{}'
@@ -155,21 +142,18 @@ def OFDdesserts():
             hyperL = title.find('header', class_ = 'entry-header').a['href']
             desList.append([titleActual, hyperL, finalPic])
 
+
     #write the file
     for elem in desList:
         with open('recipes/desserts.txt', 'w') as f:
             f.write('\n \n'.join(map(str, desList)))
     print('just added something yummy to desserts!')
 
+        
 
-breLinkList = []
-breTitleList = []
-breList3 = []
-breFinalList = []
-brePicList = []
-breList = []
-
+breMasterList = []
 def OFDbreakfast():
+    breList = []
     print('OFD breakfast time, yum!')
     #get the link
     urlA = 'https://olivesfordinner.com/category/breakfast-and-brunch/page/{}'
@@ -203,6 +187,9 @@ def OFDbreakfast():
             finalPic = title.img.attrs['src']
             hyperL = title.find('header', class_ = 'entry-header').a['href']
             breList.append([titleActual, hyperL, finalPic])
+    for element in breList:
+        if element not in breMasterList:
+            breMasterList.append(element)
 
     #write the file
     for elem in breList:
@@ -210,5 +197,10 @@ def OFDbreakfast():
             f.write('\n \n'.join(map(str, breList)))
     print('just added something yummy to breakfast!')
 
+def runAll():
+    OFDappetizers()
+    OFDentrees()
+    OFDdesserts()
+    OFDbreakfast()
 
-OFDbreakfast()
+runAll()
