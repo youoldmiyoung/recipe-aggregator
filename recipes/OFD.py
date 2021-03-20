@@ -1,4 +1,5 @@
 #pip install lxml
+#(in order) appetizers, entrees, dessert, breakfast 
 
 from bs4 import BeautifulSoup
 import requests
@@ -8,6 +9,7 @@ appLinkList = []
 appTitleList = []
 appList3 = []
 appFinalList = []
+appPicList = []
 
 #get the link, make the soup, parse the soup, erase duplicates, write the file.
 def OFDappetizers():
@@ -37,9 +39,12 @@ def OFDappetizers():
                     appLinkList.append(hyperL)
         #scrape the image
         #APP1
-        for image in links[0:13]:
+        for image in links[0:13]: 
             x = image.find('img')
             finalPic = x.attrs['src']
+            if 'giveaway' not in finalPic:
+                if finalPic not in appPicList:
+                    appPicList.append(finalPic)
 
 
     #different code for page 1 of each category due to diff link formatting on website
@@ -61,7 +66,9 @@ def OFDappetizers():
     for image in links[0:13]: 
             x = image.find('img')
             finalPic = x.attrs['src']
-
+            if 'giveaway' not in finalPic:
+                if finalPic not in appPicList:
+                    appPicList.append(finalPic)
     #pair titles and links together, from both the multi-page scrape and single first page scrape
     appList3.append([[x,y] for x,y in zip(appTitleList, appLinkList)])
 
@@ -82,6 +89,7 @@ entLinkList = []
 entTitleList = []
 entList3 = []
 entFinalList = []
+entPicList = []
 
 def OFDentrees():
     print('OFD entree time, yum!')
@@ -113,6 +121,9 @@ def OFDentrees():
         for image in links[0:13]: 
             x = image.find('img')
             finalPic = x.attrs['src']
+            if 'giveaway' not in finalPic:
+                if finalPic not in entPicList:
+                    entPicList.append(finalPic)
 
     #different code for page 1 of each category due to diff link formatting on website
     url = 'https://olivesfordinner.com/category/entrees/'
@@ -131,9 +142,12 @@ def OFDentrees():
 
         #scrape the image
         #ENTREE 2
-        for image in links[0:13]: 
-            x = image.find('img')
-            finalPic = x.attrs['src']
+    for image in links[0:13]: 
+        x = image.find('img')
+        finalPic = x.attrs['src']
+        if 'giveaway' not in finalPic:
+            if finalPic not in entPicList:
+                entPicList.append(finalPic)
 
     #pair titles and links together
     entList3.append([[x,y] for x,y in zip(entTitleList, entLinkList)])
@@ -156,6 +170,7 @@ desLinkList = []
 desTitleList = []
 desList3 = []
 desFinalList = []
+desPicList = []
 
 def OFDdesserts():
     print('OFD dessert time, yum!')
@@ -183,7 +198,9 @@ def OFDdesserts():
         for image in links[0:13]: 
             x = image.find('img')
             finalPic = x.attrs['src']
-
+            if 'giveaway' not in finalPic:
+                if finalPic not in desPicList:
+                    desPicList.append(finalPic)
     #different code for page 1 of each category due to diff link formatting on website
     url = 'https://olivesfordinner.com/category/dessert/'
     print('making soup...')
@@ -203,6 +220,9 @@ def OFDdesserts():
     for image in links[0:13]: 
         x = image.find('img')
         finalPic = x.attrs['src']
+        if 'giveaway' not in finalPic:
+            if finalPic not in desPicList:
+                desPicList.append(finalPic)
 
     #pair titles and links together
     desList3.append([[x,y] for x,y in zip(desTitleList, desLinkList)])
@@ -223,6 +243,7 @@ breLinkList = []
 breTitleList = []
 breList3 = []
 breFinalList = []
+brePicList = []
 
 def OFDbreakfast():
     print('OFD breakfast time, yum!')
@@ -251,7 +272,9 @@ def OFDbreakfast():
         for image in links[0:13]: 
             x = image.find('img')
             finalPic = x.attrs['src']
-
+            if 'giveaway' not in finalPic:
+                if finalPic not in brePicList:
+                    brePicList.append(finalPic)
     #different code for page 1 of each category due to diff link formatting on website
     url = 'https://olivesfordinner.com/category/breakfast-and-brunch'
     print('making soup...')
@@ -271,6 +294,10 @@ def OFDbreakfast():
     for image in links[0:13]: 
         x = image.find('img')
         finalPic = x.attrs['src']
+        if 'giveaway' not in finalPic:
+            if finalPic not in brePicList:
+                brePicList.append(finalPic)
+
     #pair titles and links together
     breList3.append([[x,y] for x,y in zip(breTitleList, breLinkList)])
     print('checking for duplicates...')
@@ -286,3 +313,4 @@ def OFDbreakfast():
             f.write('\n \n'.join(map(str, breFinalList)))
             print('just added something yummy to breakfast!')
 
+print(brePicList)
