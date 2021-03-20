@@ -70,7 +70,7 @@ def OFDappetizers():
                 if finalPic not in appPicList:
                     appPicList.append(finalPic)
     #pair titles and links together, from both the multi-page scrape and single first page scrape
-    appList3.append([[x,y] for x,y in zip(appTitleList, appLinkList)])
+    appList3.append([[x,y,z] for x,y,z in zip(appTitleList, appLinkList, appPicList)])
 
     print('checking for duplicates...')
     
@@ -150,7 +150,7 @@ def OFDentrees():
                 entPicList.append(finalPic)
 
     #pair titles and links together
-    entList3.append([[x,y] for x,y in zip(entTitleList, entLinkList)])
+    entList3.append([[x,y,z] for x,y,z in zip(entTitleList, entLinkList, entPicList)])
 
     print('checking for duplicates...')
     
@@ -225,7 +225,7 @@ def OFDdesserts():
                 desPicList.append(finalPic)
 
     #pair titles and links together
-    desList3.append([[x,y] for x,y in zip(desTitleList, desLinkList)])
+    desList3.append([[x,y,z] for x,y,z in zip(desTitleList, desLinkList, desPicList)])
     print('checking for duplicates...')
 
     #erase duplicates
@@ -299,7 +299,7 @@ def OFDbreakfast():
                 brePicList.append(finalPic)
 
     #pair titles and links together
-    breList3.append([[x,y] for x,y in zip(breTitleList, breLinkList)])
+    breList3.append([[x,y,z] for x,y,z in zip(breTitleList, breLinkList, brePicList)])
     print('checking for duplicates...')
 
     #erase duplicates
