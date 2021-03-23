@@ -1,5 +1,9 @@
 from bs4 import BeautifulSoup
 import requests
+from datetime import datetime
+import shutil
+
+stamp = datetime.now()
 
 def PULbreakfast():
     linkPrefix = 'https://www.pickuplimes.com/'
@@ -44,7 +48,10 @@ def PULbreakfast():
 
     for elem in breList:
         with open('recipes/breakfast.txt', 'w') as f:
-            f.write('\n \n'.join(map(str, breList)))
+            f.write(f'breList = {breList}')
+
+    newPath = shutil.copy('recipes/breakfast.txt', f'/Users/miagayle/Desktop/recipeWeb/recipes/breakfast/breakfast.py')
+
     print('just added something yummy to breakfast!')
 
 def PULappetizers():
@@ -69,10 +76,13 @@ def PULappetizers():
             link = x.a['href']
             image = x.a.img.attrs['src']
             appList.append([f'{title}, https://www.pickuplimes.com{link}, {image}'])
-    # for elem in appList:
-    #     with open('recipes/appetizers.txt', 'w') as f:
-    #         f.write('\n \n'.join(map(str, appList)))
-    # print('just added something yummy to appetizers!')
+    for elem in appList:
+        with open('recipes/appetizers.txt', 'w') as f:
+            f.write(f'appList = {appList}')
+
+    newPath = shutil.copy('recipes/appetizers.txt', f'/Users/miagayle/Desktop/recipeWeb/recipes/apps/apps.py')
+
+    print('just added something yummy to appetizers!')
 
 
 
@@ -134,11 +144,12 @@ def PULsnacksnsauce():
         image = x.a.img.attrs['src']
         snaList.append([f'{title}, https://www.pickuplimes.com{link}, {image}'])
 
-    # for elem in snaList:
-    #     with open('recipes/snacksnsauce.txt', 'w') as f:
-    #         f.write('\n \n'.join(map(str, snaList)))
-    # print('just added something yummy to snacks n sauce!')
+    for elem in snaList:
+        with open('recipes/snacksnsauce.txt', 'w') as f:
+            f.write(f'snaList = {snaList}')
 
+    newPath = shutil.copy('recipes/snacksnsauce.txt', f'/Users/miagayle/Desktop/recipeWeb/recipes/snacks/snacks.py')
+    print('just added something yummy to snacks')
 
 # soups t11, salads type 12, sides t4
 
@@ -199,10 +210,12 @@ def PULsoupsaladside():
         image = x.a.img.attrs['src']
         souList.append([f'{title}, https://www.pickuplimes.com{link}, {image}'])
 
-    # for elem in souList:
-    #     with open('recipes/soupsaladside.txt', 'w') as f:
-    #         f.write('\n \n'.join(map(str, souList)))
-    # print('just added something yummy to soup, salad, side!')
+    for elem in souList:
+        with open('recipes/soupsaladside.txt', 'w') as f:
+            f.write(f'souList = {souList}')
+
+    newPath = shutil.copy('recipes/soupsaladside.txt', f'/Users/miagayle/Desktop/recipeWeb/recipes/sides/sides.py')
+    print('just added something yummy to soup, salad, side!')
 
 #entree type 2
 def PULentree():
@@ -227,10 +240,13 @@ def PULentree():
             link = x.a['href']
             image = x.a.img.attrs['src']
             entList.append([f'{title}, https://www.pickuplimes.com{link}, {image}'])
-    # for elem in entList:
-    #     with open('recipes/entrees.txt', 'w') as f:
-    #         f.write('\n \n'.join(map(str, entList)))
-    # print('just added something yummy to entrees!')
+    for elem in entList:
+        with open('recipes/entrees.txt', 'w') as f:
+            f.write(f'entList = {entList}')
+
+    newPath = shutil.copy('recipes/entrees.txt', f'/Users/miagayle/Desktop/recipeWeb/recipes/entrees/entrees.py')
+
+    print('just added something yummy to entrees!')
 
 
 
@@ -257,9 +273,20 @@ def PULdrinks():
             link = x.a['href']
             image = x.a.img.attrs['src']
             driList.append([f'{title}, https://www.pickuplimes.com{link}, {image}'])
-    # for elem in driList:
-    #     with open('recipes/drinks.txt', 'w') as f:
-    #         f.write('\n \n'.join(map(str, driList)))
-    # print('just added something yummy to drinks!')
-    print(driList)
+    for elem in driList:
+        with open('recipes/drinks.txt', 'w') as f:
+            f.write(f'driList = {driList}')
 
+    newPath = shutil.copy('recipes/drinks.txt', f'/Users/miagayle/Desktop/recipeWeb/recipes/drinks/drinks.py')
+    print('just added something yummy to drinks!')
+
+
+def runAllPUL():
+    PULdrinks()
+    PULappetizers()
+    PULbreakfast()
+    PULentree()
+    PULsnacksnsauce()
+    PULsoupsaladside()
+
+runAllPUL()

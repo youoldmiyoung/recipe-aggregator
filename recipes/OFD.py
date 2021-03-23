@@ -3,6 +3,8 @@
 
 from bs4 import BeautifulSoup
 import requests
+from datetime import datetime
+import shutil
 
 
 #get the link, make the soup, parse the soup, erase duplicates, write the file.
@@ -49,9 +51,12 @@ def OFDappetizers():
             appList.append([titleActual, hyperL, finalPic])
 
 #write the file
-    for element in appList:
+    for elem in appList:
         with open('recipes/appetizers.txt', 'w') as f:
-            f.write('\n \n'.join(map(str, appList)))
+            f.write(f'appList = {appList}')
+
+    newPath = shutil.copy('recipes/appetizers.txt', f'/Users/miagayle/Desktop/recipeWeb/recipes/apps/apps.py')
+
     print('just added something yummy to appetizers!')
 
 def OFDentrees():
@@ -97,7 +102,10 @@ def OFDentrees():
 #write the file
     for elem in entList:
         with open('recipes/entrees.txt', 'w') as f:
-            f.write('\n \n'.join(map(str, entList)))
+            f.write(f'entList = {entList}')
+
+    newPath = shutil.copy('recipes/entrees.txt', f'/Users/miagayle/Desktop/recipeWeb/recipes/entrees/entrees.py')
+
     print('just added something yummy to entrees!')
 
 def OFDdesserts():
@@ -141,7 +149,9 @@ def OFDdesserts():
     #write the file
     for elem in desList:
         with open('recipes/desserts.txt', 'w') as f:
-            f.write('\n \n'.join(map(str, desList)))
+            f.write(f'desList = {desList}')
+
+    newPath = shutil.copy('recipes/desserts.txt', f'/Users/miagayle/Desktop/recipeWeb/recipes/desserts/desserts.py')
     print('just added something yummy to desserts!')
 
         
@@ -187,7 +197,9 @@ def OFDbreakfast():
     #write the file
     for elem in breList:
         with open('recipes/breakfast.txt', 'w') as f:
-            f.write('\n \n'.join(map(str, breList)))
+            f.write(f'breList = {breList}')
+
+    newPath = shutil.copy('recipes/breakfast.txt', f'/Users/miagayle/Desktop/recipeWeb/recipes/breakfast/breakfast.py')
     print('just added something yummy to breakfast!')
 
 def runAll():
@@ -196,4 +208,4 @@ def runAll():
     OFDdesserts()
     OFDbreakfast()
 
-#runAll()
+runAll()
