@@ -8,7 +8,20 @@ import shutil
 
 
 #get the link, make the soup, parse the soup, erase duplicates, write the file.
+def headerHTML():
+    with open('recipes/scrap.html', 'w') as f:
+        f.write('''
+        {% extends 'base.html' %}
+
+{% block content %}
+
+<h1>appetizers</h1> 
+<ul> 
+        ''')
+
 def OFDappetizers():
+    headerHTML()
+
     appList = []
     print('OFD appetizer time, yum!')
     #get the link
@@ -30,9 +43,17 @@ def OFDappetizers():
         for title in links[0:13]:
             titleActual = title.get('aria-label')
             if 'Giveaway' not in titleActual:
-                finalPic = title.img.attrs['src']
-                hyperL = title.find('header', class_ = 'entry-header').a['href']
-                appList.append([titleActual, hyperL, finalPic])
+                finalPic = '<img src="' + title.img.attrs['src'] + '">'
+                hyperL = '<a href="' + title.find('header', class_ = 'entry-header').a['href'] + f'">{titleActual}</a>'
+                appList.append([finalPic, hyperL])
+                with open('recipes/apps.html', 'a') as f:
+                    f.write(f'''
+
+    <h2>{hyperL}</h2>
+    <{finalPic}>
+
+                ''')
+                # appList.append([titleActual, hyperL, finalPic])
 
 
     #different code for page 1 of each category due to diff link formatting on website
@@ -46,18 +67,19 @@ def OFDappetizers():
     for title in links[0:13]:
         titleActual = title.get('aria-label')
         if 'Giveaway' not in titleActual:
-            finalPic = title.img.attrs['src']
-            hyperL = title.find('header', class_ = 'entry-header').a['href']
-            appList.append([titleActual, hyperL, finalPic])
+            finalPic = '<img src="' + title.img.attrs['src'] + '">'
+            hyperL = '<a href="' + title.find('header', class_ = 'entry-header').a['href'] + f'">{titleActual}</a>'
+            #appList.append([finalPic, hyperL])
+            #to write
+            with open('recipes/apps.html', 'a') as f:
+                f.write(f'''
 
-#write the file
-    for elem in appList:
-        with open('recipes/appetizers.txt', 'w') as f:
-            f.write(f'appList = {appList}')
+    <h2>{hyperL}</h2>
+    <{finalPic}>
 
-    newPath = shutil.copy('recipes/appetizers.txt', f'/Users/miagayle/Desktop/recipeWeb/recipes/apps/apps.py')
-
-    print('just added something yummy to appetizers!')
+                ''')
+    with open ('recipes/apps.html', 'a') as f:
+        f.write('</ul>')
 
 def OFDentrees():
     entList = []
